@@ -3,3 +3,4 @@ pandas
 gspread
 google-auth
 datetime
+oauth2client.service_account
