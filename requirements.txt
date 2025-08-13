@@ -1,5 +1,5 @@
-psycopg2
+psycopg2-binary
 pandas
 gspread
-oauth2client
+google-auth
 datetime
