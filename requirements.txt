@@ -1,6 +1,4 @@
 psycopg2-binary
-pandas
 gspread
-google-auth
-datetime
-oauth2client.service_account
+oauth2client
+pandas
