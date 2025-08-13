@@ -1,1 +1,33 @@
 
+name: Run ETL every 1 minute
+
+on:
+  schedule:
+    - cron: "*/1 * * * *"  # Runs every 1 minute
+  workflow_dispatch:       # Allows manual trigger
+
+jobs:
+  run-etl:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run ETL script
+        env:
+          PGHOST: ${{ secrets.PGHOST }}
+          PGDATABASE: ${{ secrets.PGDATABASE }}
+          PGUSER: ${{ secrets.PGUSER }}
+          PGPASSWORD: ${{ secrets.PGPASSWORD }}
+          PGPORT: ${{ secrets.PGPORT }}
+          SPREADSHEET_URL: ${{ secrets.SPREADSHEET_URL }}
+          GOOGLE_CREDS: ${{ secrets.GOOGLE_CREDS }}
+        run: python ETL_dummy.py
